@@ -6,7 +6,8 @@ import torch
 import os
 from tqdm import tqdm
 
-path = "CatA_Simple"
+path = "/home/tkaunlaky/Documents/ml_project/Dataset_Recentlygenerated/CatA_Simple"
+output_path = "/home/tkaunlaky/Documents/ml_project/Dataset_Recentlygenerated"
 
 folder = os.fsencode(path)
 
@@ -41,7 +42,7 @@ for file in tqdm(os.listdir(folder)):
             data_set['output'].append(output.tolist())
             data_set['operation'].append(operation.tolist())
             data_set['kernel'].append(kernel.tolist())
-        # writer.writerow(df)
+
 df = pd.DataFrame(data_set)
-# df.to_csv('dataset.csv', encoding='utf-8', header=True, index=True)
-df.to_json('dataset.json')
+output_file = os.path.join(output_path, 'dataset.json')
+df.to_json(output_file)

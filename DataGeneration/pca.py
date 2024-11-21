@@ -4,7 +4,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 from sklearn.decomposition import TruncatedSVD, PCA
-df = pd.read_json('../Dataset/dataset.json')
+df = pd.read_json('../Dataset_Recentlygenerated/dataset.json')
 df.head(5)
 df = df.sample(frac=1).reset_index(drop=True)
 df = df.iloc[:1000]
@@ -75,4 +75,4 @@ df_reduced['output_reduced'] = reduced_outs
 
 print(np.array(df_reduced['input_reduced'][0]).shape)
 df_reduced.head(2)
-df_reduced.to_json(f'../Dataset/dataset1k_reduced_{n_c}.json')
+df_reduced.to_json(f'../Dataset_Recentlygenerated/dataset1k_reduced_{n_c}.json')

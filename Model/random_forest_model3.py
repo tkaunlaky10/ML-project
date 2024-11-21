@@ -15,6 +15,7 @@ n_c = 10  # Number of reduced channels
 n_trees = 500  # Number of trees in the random forest
 k_folds = 5  # Number of K-folds
 file = f'../Dataset/dataset5k_reduced_{n_c}.json'
+# file = f'../Dataset_Recentlygenerated/dataset1k_reduced_{n_c}.json'  # Alternative dataset path
 
 
 class IPARC:

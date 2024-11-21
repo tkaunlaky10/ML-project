@@ -17,6 +17,7 @@ from tqdm import tqdm
 n_c = 60
 n_epochs = 30  # For consistency in plotting
 file = f'../Dataset/dataset5k_reduced_{n_c}.json'
+# file = f'../Dataset_Recentlygenerated/dataset.json'  # Alternative dataset path
 class IPARC(Dataset):
     def __init__(self, df):
         self.df = df

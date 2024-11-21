@@ -98,15 +98,11 @@ def generate_100_tasks_CatA_Simple(seed, **param):
     """
     """
     np.random.seed(seed)
-    # Get current timestamp in format YYYYMMDD_HHMMSS (e.g., "20240220_143022")
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    # Create a fixed directory name instead of timestamp-based
+    dataset_dir = "../Dataset_Recentlygenerated/CatA_Simple"
 
-    # Create a unique directory name using timestamp to avoid overwriting existing data
-    # Format: "../Dataset_20240220_143022/CatA_Simple"
-    dataset_dir = f"../Dataset_{timestamp}/CatA_Simple"
-
-    # Create the directory if it doesn't exist, do nothing if it already exists
-    # exist_ok=True prevents errors if directory already exists
+    # Create the directory if it doesn't exist
     os.makedirs(dataset_dir, exist_ok=True)
     
     for task_no in range(5000):

@@ -12,6 +12,7 @@ from tqdm import tqdm
 n_c = 60
 hidden_size = 16
 file = f'../Dataset/dataset1k_reduced_{n_c}.json'
+# file = f'../Dataset_Recentlygenerated/dataset1k_reduced_{n_c}.json'  # Alternative dataset path
 ### Datasets
 
 # dataloaders

@@ -25,7 +25,8 @@ MODEL_CONFIG = {
     'train_size': 0.8,       # Training data split ratio
     'random_state': 42,      # Random seed for reproducibility
     'batch_size': 128,       # Batch size for processing
-    'dataset_path': f'../Dataset/dataset10k_reduced_60.json'  # Added dataset path
+    'dataset_path': f'../Dataset/dataset10k_reduced_60.json'  # Current dataset path
+    # 'dataset_path': f'../Dataset_Recentlygenerated/dataset1k_reduced_60.json'  # Alternative dataset path
 }
 
 # Optimized Random Forest Parameters
