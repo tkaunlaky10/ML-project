@@ -1,3 +1,1 @@
-Dataset/dataset10k_reduced_60.json filter=lfs diff=lfs merge=lfs -text
-Dataset/dataset5k_reduced_100.json filter=lfs diff=lfs merge=lfs -text
-Dataset/dataset5k_reduced_60.json filter=lfs diff=lfs merge=lfs -text
+Dataset/*.json filter=lfs diff=lfs merge=lfs -text

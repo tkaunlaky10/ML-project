@@ -84,7 +84,7 @@ file = f'./Dataset/dataset1k_reduced_{n_c}.json'  # Change input dataset path
 ## Results
 
 Our experiments show that Sequential Logistic Regression performs particularly well on:
-- Smaller datasets
+- Smaller datasets and partial datasets
 - Simple transformation sequences
 - Progressive prediction tasks
 
@@ -95,11 +95,37 @@ Our experiments show that Sequential Logistic Regression performs particularly w
 python data/datagen.py
 ```
 
-2. Train and evaluate models:
+2. Convert data to JSON format:
+```bash
+python Dataset/data-to-json.py
+```
+This script converts the generated dataset into a structured JSON format for further processing.
+
+3. Apply PCA dimensionality reduction:
+```bash
+python Data/pca.py
+```
+This step:
+- Reduces the dimensionality of the image data
+- Analyzes variance explained by different numbers of components
+- Creates visualizations of original vs. reconstructed images
+- Generates reduced datasets (dataset1k_reduced_60.json, etc.)
+
+4. Train and evaluate models:
 ```bash
 python models/slr.py  # For Sequential Logistic Regression
 python models/rf.py   # For Random Forest
 ```
+
+Note: Make sure to run these scripts in sequence as each step depends on the output of the previous step.
+
+### Data Processing Flow
+1. Raw data generation (datagen.py)
+2. Data structuring (data-to-json.py)
+3. Dimensionality reduction (pca.py)
+4. Model training and evaluation
+
+Each script can be configured through parameters at the top of the file. See individual script documentation for details.
 
 ## Requirements
 
