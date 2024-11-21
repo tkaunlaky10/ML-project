@@ -1,0 +1,130 @@
+# File Creation and Storage Documentation
+
+This document explains how files are created and stored by the three main data processing scripts in the project.
+
+## 1. DataGeneration/datagen.py
+
+### Purpose
+Generates synthetic image transformation sequences with dilation and erosion operations.
+
+### File Creation Process
+1. Creates directory structure:
+   ```
+   Dataset_Recentlygenerated/
+   └── CatA_Simple/
+       ├── Task000.json
+       ├── Task000_soln.txt
+       ├── Task001.json
+       ├── Task001_soln.txt
+       └── ... (up to Task4999)
+   ```
+
+2. For each task (0-4999):
+   - Creates Task{XXX}.json containing 4 input-output image pairs
+   - Creates Task{XXX}_soln.txt containing the sequence of operations
+
+### File Locations
+- Base Directory: ../Dataset_Recentlygenerated/CatA_Simple/
+- Task Files: Task{000-4999}.json
+- Solution Files: Task{000-4999}_soln.txt
+
+### File Formats
+- Task JSON format:
+  ```json
+  [
+    {
+      "input": [[0,1,0,...], ...],  // 15x15 binary matrix
+      "output": [[1,0,1,...], ...]  // 15x15 binary matrix
+    },
+    // ... 4 pairs total
+  ]
+  ```
+- Solution TXT format:
+  ```
+  Dilation SE1
+  Dilation SE3
+  Dilation SE2
+  Dilation SE4
+  Erosion SE1
+  Erosion SE3
+  Erosion SE2
+  Erosion SE4
+  ```
+
+## 2. Dataset/data-to-json.py
+
+### Purpose
+Combines individual task files into a single structured dataset.
+
+### File Creation Process
+1. Reads all JSON files from Dataset_Recentlygenerated/CatA_Simple/
+2. Processes and combines data into unified format
+3. Creates single output file with all tasks
+
+### File Location
+Output: /Dataset_Recentlygenerated/dataset.json
+
+### File Format
+```json
+{
+  "input": [4x15x15 arrays],
+  "output": [4x15x15 arrays],
+  "operation": [8 operation sequences],
+  "kernel": [8x8 kernel matrices]
+}
+```
+
+## 3. DataGeneration/pca.py
+
+### Purpose
+Performs dimensionality reduction on the combined dataset.
+
+### File Creation Process
+1. Reads dataset.json
+2. Applies PCA transformation
+3. Creates reduced dimension version
+
+### File Location
+Output: /Dataset_Recentlygenerated/dataset1k_reduced_60.json
+
+### File Format
+```json
+{
+  "input_reduced": [4x60 arrays],
+  "output_reduced": [4x60 arrays],
+  "operation": [original operations],
+  "kernel": [original kernels]
+}
+```
+
+## Data Flow Summary
+
+1. datagen.py → Creates individual task files
+2. data-to-json.py → Combines tasks into single dataset
+3. pca.py → Creates reduced dimension version
+
+## Important Notes
+
+1. Directory Structure:
+   - Always maintain the CatA_Simple/ subdirectory
+   - Keep original and generated datasets separate
+   - Use consistent file naming conventions
+
+2. File Dependencies:
+   - data-to-json.py requires completed task generation
+   - pca.py requires completed dataset.json
+
+3. Storage Requirements:
+   - ~500MB for raw task files
+   - ~100MB for combined dataset
+   - ~20MB for reduced dataset
+
+4. Error Handling:
+   - Scripts create directories if missing
+   - Existing files will be overwritten
+   - Check permissions before running
+
+5. Maintenance:
+   - Regular cleanup of old generated datasets
+   - Verify file integrity after generation
+   - Monitor disk space usage
