@@ -1,0 +1,6 @@
+Dataset/dataset10k_reduced_60.json
+Dataset/dataset5k_reduced_100.json
+Dataset/dataset5k_reduced_60.json
+__pycache__/
+*.pyc
+.DS_Store
